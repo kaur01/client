@@ -1,4 +1,4 @@
-<div>
+<div class="row">
   <table mat-table *ngIf="employees?.length > 0" [dataSource]="employees" class="col-12 padded-table">
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef>Id</th>
@@ -31,7 +31,7 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let employee; columns: displayedColumns;" class="row-clickable"></tr>
+    <tr mat-row *matRowDef="let employee; columns: displayedColumns;"></tr>
   </table>
 
   <p *ngIf="employees?.length === 0">No data found!</p>

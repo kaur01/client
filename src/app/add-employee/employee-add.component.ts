@@ -30,6 +30,7 @@ export class EmployeeAddComponent {
       return;
     }
     const dateOfBirth = new Date(formGroup.controls['dateOfBirth'].value);
+    console.log(dateOfBirth);
     const name = formGroup.controls['name'].value;
     const salary = formGroup.controls['salary'].value;
     const skill = formGroup.controls['skill'].value;

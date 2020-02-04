@@ -30,7 +30,7 @@ export class EmployeeListingComponent implements OnInit {
       this.employees.push({
         id: e._id,
         name: e.name,
-        dateOfBirth: e.dob,
+        dateOfBirth: e.dateOfBirth,
         salary: e.salary,
         skills: e.skills,
         photo: e.photo
