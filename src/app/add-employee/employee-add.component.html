@@ -1,0 +1,46 @@
+<form [formGroup]="employeeFormGroup" (ngSubmit)="onSubmit(employeeFormGroup)">
+  <p >Please enter the details</p>
+
+  <p>Name</p>
+  <div class="row">
+    <mat-form-field class="col-xs-12">
+      <input type="text" matInput placeholder="Enter name" formControlName="name" maxlength="50">
+    </mat-form-field>
+  </div>
+
+  <p>Date of birth</p>
+  <div class="row">
+  <mat-form-field>
+    <input matInput class="input-field" placeholder="Date of birth" (click)="picker.open()"
+           [matDatepicker]="picker" formControlName="dateOfBirth" readonly/>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  </div>
+
+  <p>Salary</p>
+  <div class="row">
+    <mat-form-field class="col-xs-12">
+      <input  type="text" maxlength="30" matInput placeholder="Enter salary"
+             formControlName="salary">
+    </mat-form-field>
+  </div>
+
+  <p>Skills</p>
+  <div class="row">
+    <mat-form-field class="col-xs-12">
+      <input type="number"  matInput placeholder="Enter skill"
+             formControlName="skill" min="1" max="10">
+    </mat-form-field>
+  </div>
+
+  <p>Photo</p>
+  <div class="row">
+    <mat-form-field class="col-xs-12">
+      <input type="text" matInput placeholder="Enter photo url"
+             formControlName="photo">
+    </mat-form-field>
+  </div>
+
+  <button mat-button>Create Employee</button>
+</form>
