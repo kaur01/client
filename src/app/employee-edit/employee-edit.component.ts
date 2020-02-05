@@ -1,19 +1,22 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {Employee} from '../models/Employee';
+import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-employee-add',
-  templateUrl: './employee-add.component.html',
+  selector: 'app-employee-edit',
+  templateUrl: './employee-edit.component.html',
 })
 
-export class EmployeeAddComponent {
-
+export class EmployeeEditComponent implements OnInit {
+  public employee: Employee;
   public employeeFormGroup: any;
 
-  constructor(private httpClient: HttpClient, public formBuilder: FormBuilder) {
-
+  constructor(private httpClient: HttpClient, public formBuilder: FormBuilder, private router: Router) {
+    if (this.router.getCurrentNavigation().extras.state) {
+      this.employee = this.router.getCurrentNavigation().extras.state.employee;
+    }
     this.employeeFormGroup = formBuilder.group({
       name: new FormControl(null, [Validators.required]),
       dateOfBirth: new FormControl(null, [Validators.required]),
@@ -23,6 +26,19 @@ export class EmployeeAddComponent {
     });
   }
 
+
+  ngOnInit(): void {
+    if (this.employee) {
+      this.employeeFormGroup.patchValue({
+        name: this.employee.name,
+        dateOfBirth: this.employee.dateOfBirth,
+        salary: this.employee.salary,
+        skill: this.employee.skills,
+        photo: this.employee.photo
+      });
+    }
+  }
+
   public async onSubmit(formGroup: FormGroup): Promise<void> {
 
     if (formGroup.invalid) {
@@ -30,13 +46,14 @@ export class EmployeeAddComponent {
       return;
     }
     const dateOfBirth = new Date(formGroup.controls['dateOfBirth'].value);
+    const id = this.employee._id;
     const name = formGroup.controls['name'].value;
     const salary = formGroup.controls['salary'].value;
     const skill = formGroup.controls['skill'].value;
     const photo = formGroup.controls['photo'].value;
-    const url = `https://localhost:3000/api/employee/`;
-    const employee = new Employee(null, name, dateOfBirth, salary, skill, photo);
-    await this.httpClient.post<Employee>(url, employee).toPromise();
+    const url = `https://localhost:3000/api/employee/${id}`;
+    const employee = new Employee(id, name, dateOfBirth, salary, skill, photo);
+    await this.httpClient.put<Employee>(url, employee).toPromise();
   }
 }
 

@@ -10,12 +10,14 @@ import {EmployeeAddComponent} from './add-employee/employee-add.component';
 import {MatButtonModule, MatDatepickerModule, MatFormFieldModule, MatInputModule, MatNativeDateModule} from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {EmployeeEditComponent} from './employee-edit/employee-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EmployeeListingComponent,
-    EmployeeAddComponent
+    EmployeeAddComponent,
+    EmployeeEditComponent
   ],
   imports: [
     BrowserModule,

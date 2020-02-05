@@ -7,8 +7,8 @@ export class Employee {
   public readonly skills: number[];
   public readonly photo: string;
 
-  constructor(id?: string, name?: string, dateOfBirth?: Date, salary?: number, skills?: number[], photo?: string) {
-    this._id = id;
+  constructor(_id?: string, name?: string, dateOfBirth?: Date, salary?: number, skills?: number[], photo?: string) {
+    this._id = _id;
     this.name = name;
     this.dateOfBirth = dateOfBirth;
     this.salary = salary;

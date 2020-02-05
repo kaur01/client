@@ -10,7 +10,7 @@ import {Employee} from '../models/Employee';
 
 export class EmployeeListingComponent implements OnInit {
   public employees: EmployeesTableElement[] = [];
-  displayedColumns = ['id', 'name', 'dateOfBirth', 'salary', 'skills', 'photo'];
+  displayedColumns = ['id', 'name', 'dateOfBirth', 'salary', 'skills', 'photo', 'edits', 'deletes'];
 
   constructor(private httpClient: HttpClient, private router: Router) {
   }
@@ -23,12 +23,22 @@ export class EmployeeListingComponent implements OnInit {
     await this.router.navigate(['/employee/add']);
   }
 
+  public async edit(employee: Employee): Promise<void> {
+    await this.router.navigate(['/employee/edit'],  {state: {employee: employee}});
+  }
+
+  public async delete(employeeId: string): Promise<void> {
+    const url = `https://localhost:3000/api/employee/${employeeId}`;
+    await this.httpClient.delete<void>(url).toPromise();
+    location.reload();
+  }
+
   private async getTableData(): Promise<EmployeesTableElement[]> {
     const url = `https://localhost:3000/api/employee/`;
     const employeeList = await this.httpClient.get<Employee[]>(url).toPromise();
     employeeList.forEach(e => {
       this.employees.push({
-        id: e._id,
+        _id: e._id,
         name: e.name,
         dateOfBirth: e.dateOfBirth,
         salary: e.salary,
@@ -41,7 +51,7 @@ export class EmployeeListingComponent implements OnInit {
 }
 
 export interface EmployeesTableElement {
-  id: string;
+  _id: string;
   name: string;
   dateOfBirth: Date;
   salary: number;
