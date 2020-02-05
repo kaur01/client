@@ -1,0 +1,17 @@
+.table {
+  width : 100%;
+}
+
+#deleteCell {
+  padding: 0;
+  margin-bottom: 2px;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: rgba(0,0,0,.12);
+}
+
+
+#editCell {
+  padding-left: 0;
+  margin-bottom: 2px;
+}

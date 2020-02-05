@@ -9,17 +9,16 @@ import {Employee} from '../models/Employee';
 })
 
 export class EmployeeAddComponent {
-
   public employeeFormGroup: any;
 
   constructor(private httpClient: HttpClient, public formBuilder: FormBuilder) {
 
     this.employeeFormGroup = formBuilder.group({
-      name: new FormControl(null, [Validators.required]),
+      name: new FormControl(null, [Validators.required, Validators.pattern(/[A-Za-z ]+/)]),
       dateOfBirth: new FormControl(null, [Validators.required]),
-      salary: new FormControl(null, [Validators.required]),
-      skill: new FormControl(null, [Validators.required]),
-      photo: new FormControl(null, [Validators.required]),
+      salary: new FormControl(null, [Validators.required, Validators.pattern(/[0-9]+/)]),
+      skill: new FormControl(null, [Validators.required, Validators.pattern(/[0-9]+/)]),
+      photo: new FormControl(null, [Validators.required, Validators.pattern(/[A-Za-z ]+/)]),
     });
   }
 

@@ -2,15 +2,23 @@ import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {Employee} from '../models/Employee';
+import {MatTableDataSource} from '@angular/material';
 
 @Component({
   selector: 'app-employee-listing',
   templateUrl: './employee-listing.component.html',
+  styleUrls: ['./employee-listing.component.css']
 })
 
 export class EmployeeListingComponent implements OnInit {
   public employees: EmployeesTableElement[] = [];
   displayedColumns = ['id', 'name', 'dateOfBirth', 'salary', 'skills', 'photo', 'edits', 'deletes'];
+  dataSource = new MatTableDataSource(this.employees);
+
+  applyFilter(filterValue: string) {
+    console.log(filterValue);
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 
   constructor(private httpClient: HttpClient, private router: Router) {
   }

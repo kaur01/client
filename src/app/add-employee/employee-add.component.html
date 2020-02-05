@@ -42,5 +42,5 @@
     </mat-form-field>
   </div>
 
-  <button mat-button>Create Employee</button>
+  <button mat-button [disabled]="employeeFormGroup.invalid" >Create Employee</button>
 </form>

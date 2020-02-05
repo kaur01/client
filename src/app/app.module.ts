@@ -7,7 +7,14 @@ import { AppComponent } from './app.component';
 import {EmployeeListingComponent} from './employee-listing/employee-listing.component';
 import {HttpClientModule} from '@angular/common/http';
 import {EmployeeAddComponent} from './add-employee/employee-add.component';
-import {MatButtonModule, MatDatepickerModule, MatFormFieldModule, MatInputModule, MatNativeDateModule} from '@angular/material';
+import {
+  MatButtonModule,
+  MatDatepickerModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatNativeDateModule, MatOptionModule,
+  MatPaginatorModule, MatSelectModule
+} from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {EmployeeEditComponent} from './employee-edit/employee-edit.component';
@@ -21,6 +28,9 @@ import {EmployeeEditComponent} from './employee-edit/employee-edit.component';
   ],
   imports: [
     BrowserModule,
+    MatPaginatorModule,
+    MatOptionModule,
+    MatSelectModule,
     AppRoutingModule,
     MatFormFieldModule,
     MatDatepickerModule,

@@ -42,7 +42,7 @@
     </mat-form-field>
   </div>
 
-  <button mat-button>Update Employee</button>
+  <button mat-button [disabled]="employeeFormGroup.invalid">Update Employee</button>
 
   <p *ngIf="!employee">No data found!</p>
 </form>
