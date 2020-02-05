@@ -11,6 +11,7 @@ import {Router} from '@angular/router';
 
 export class EmployeeEditComponent implements OnInit {
   public employee: Employee;
+  public skillList: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   public employeeFormGroup: any;
 
   constructor(private httpClient: HttpClient, public formBuilder: FormBuilder, private router: Router) {
@@ -21,7 +22,7 @@ export class EmployeeEditComponent implements OnInit {
       name: new FormControl(null, [Validators.required, Validators.pattern(/[A-Za-z ]+/)]),
       dateOfBirth: new FormControl(null, [Validators.required]),
       salary: new FormControl(null, [Validators.required, Validators.pattern(/[0-9]+/)]),
-      skill: new FormControl(null, [Validators.required, Validators.pattern(/[0-9]+/)]),
+      skills: new FormControl(null, [Validators.required, Validators.pattern(/[0-9]+/)]),
       photo: new FormControl(null, [Validators.required, Validators.pattern(/[A-Za-z ]+/)]),
     });
   }
@@ -49,7 +50,7 @@ export class EmployeeEditComponent implements OnInit {
     const id = this.employee._id;
     const name = formGroup.controls['name'].value;
     const salary = formGroup.controls['salary'].value;
-    const skill = formGroup.controls['skill'].value;
+    const skill = formGroup.controls['skills'].value;
     const photo = formGroup.controls['photo'].value;
     const url = `https://localhost:3000/api/employee/${id}`;
     const employee = new Employee(id, name, dateOfBirth, salary, skill, photo);
