@@ -53,7 +53,7 @@ export class EmployeeEditComponent implements OnInit {
       const salary = formGroup.controls['salary'].value;
       const skill = formGroup.controls['skills'].value;
       const photo = formGroup.controls['photo'].value;
-      const url = `https://localhost:3000/api/employee/${id}`;
+      const url = `http://localhost:3000/api/employee/${id}`;
       const employee = new Employee(id, name, dateOfBirth, salary, skill, photo);
       await this.httpClient.put<Employee>(url, employee).toPromise();
       this.router.navigate(['../../']);

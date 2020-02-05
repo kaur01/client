@@ -35,7 +35,7 @@ export class EmployeeAddComponent {
     const salary = formGroup.controls['salary'].value;
     const skill = formGroup.controls['skills'].value;
     const photo = formGroup.controls['photo'].value;
-    const url = `https://localhost:3000/api/employee/`;
+    const url = `http://localhost:3000/api/employee/`;
     const employee = new Employee(null, name, dateOfBirth, salary, skill, photo);
     await this.httpClient.post<Employee>(url, employee).toPromise();
     await this.router.navigate(['../../']);

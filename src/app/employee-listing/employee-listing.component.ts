@@ -31,13 +31,13 @@ export class EmployeeListingComponent implements OnInit {
   }
 
   public async delete(employeeId: string): Promise<void> {
-    const url = `https://localhost:3000/api/employee/${employeeId}`;
+    const url = `http://localhost:3000/api/employee/${employeeId}`;
     await this.httpClient.delete<void>(url).toPromise();
     location.reload();
   }
 
   private async getTableData(): Promise<EmployeesTableElement[]> {
-    const url = `https://localhost:3000/api/employee/`;
+    const url = `http://localhost:3000/api/employee/`;
     const employeeList = await this.httpClient.get<Employee[]>(url).toPromise();
     employeeList.forEach(e => {
       this.employees.push({

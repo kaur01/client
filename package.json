@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "npm run build && ts-node src/server.ts",
-    "devStart": "ng serve --port 4200 --host 0.0.0.0 --ssl true --ssl-key ./config/key.pem --ssl-cert ./config/cert.pem",
+    "devStart": "ng serve --port 4200 --host 0.0.0.0",
     "build": "ng build --prod",
     "test": "nyc mocha",
     "e2e": "ng e2e"
