@@ -47,14 +47,19 @@ export class EmployeeEditComponent implements OnInit {
       return;
     }
     const dateOfBirth = new Date(formGroup.controls['dateOfBirth'].value);
-    const id = this.employee._id;
-    const name = formGroup.controls['name'].value;
-    const salary = formGroup.controls['salary'].value;
-    const skill = formGroup.controls['skills'].value;
-    const photo = formGroup.controls['photo'].value;
-    const url = `https://localhost:3000/api/employee/${id}`;
-    const employee = new Employee(id, name, dateOfBirth, salary, skill, photo);
-    await this.httpClient.put<Employee>(url, employee).toPromise();
+    if (this.employee._id) {
+      const id = this.employee._id;
+      const name = formGroup.controls['name'].value;
+      const salary = formGroup.controls['salary'].value;
+      const skill = formGroup.controls['skills'].value;
+      const photo = formGroup.controls['photo'].value;
+      const url = `https://localhost:3000/api/employee/${id}`;
+      const employee = new Employee(id, name, dateOfBirth, salary, skill, photo);
+      await this.httpClient.put<Employee>(url, employee).toPromise();
+      this.router.navigate(['../../']);
+    } else {
+      this.router.navigate(['../../']);
+    }
   }
 }
 

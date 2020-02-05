@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {Employee} from '../models/Employee';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-employee-add',
@@ -12,7 +13,7 @@ export class EmployeeAddComponent {
   public skillList: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   public employeeFormGroup: any;
 
-  constructor(private httpClient: HttpClient, public formBuilder: FormBuilder) {
+  constructor(private httpClient: HttpClient, public formBuilder: FormBuilder, public router : Router) {
 
     this.employeeFormGroup = formBuilder.group({
       name: new FormControl(null, [Validators.required, Validators.pattern(/[A-Za-z ]+/)]),
@@ -37,7 +38,7 @@ export class EmployeeAddComponent {
     const url = `https://localhost:3000/api/employee/`;
     const employee = new Employee(null, name, dateOfBirth, salary, skill, photo);
     await this.httpClient.post<Employee>(url, employee).toPromise();
-    location.reload();
+    await this.router.navigate(['../../']);
   }
 }
 

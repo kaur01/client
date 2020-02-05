@@ -15,11 +15,6 @@ export class EmployeeListingComponent implements OnInit {
   displayedColumns = ['id', 'name', 'dateOfBirth', 'salary', 'skills', 'photo', 'edits', 'deletes'];
   dataSource = new MatTableDataSource(this.employees);
 
-  applyFilter(filterValue: string) {
-    console.log(filterValue);
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
   constructor(private httpClient: HttpClient, private router: Router) {
   }
 
